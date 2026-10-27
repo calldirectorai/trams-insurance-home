@@ -305,3 +305,14 @@ textarea.qi{min-height:110px;resize:vertical}
 .ft-s a:hover{color:#3ed6b5}
 
 .apb{background:linear-gradient(rgba(13,13,63,.35),rgba(13,13,63,.5)),url(https://app.calldirector.ai/objects/quick-uploads/1951/6e945bde756ff2e1.webp) center/cover;padding-top:46px}
+
+.rv{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+.rvc{padding:40px 36px;text-align:center}
+.rvc .st{color:#f5b301;display:flex;justify-content:center;gap:6px;margin-bottom:16px}
+.rvc .st .ic{width:28px;height:28px}
+.rvc h3{font-size:24px;line-height:32px;margin-bottom:10px}
+.rvc p{color:var(--mut);margin-bottom:24px}
+.rvc .btn{background:var(--blue);color:#fff}
+.whyl li{font-size:17px;line-height:24px;margin-bottom:16px;font-weight:700;color:var(--navy)}
+@media (max-width:1100px){.rv{grid-template-columns:1fr;gap:30px}
+.rvc{padding:30px 20px}}
