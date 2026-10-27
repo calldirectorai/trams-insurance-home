@@ -84,15 +84,6 @@ to{transform:none}}
 .ft-logos{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
 .ft-logos img{width:46px;height:34px;object-fit:contain;background:#fff;border-radius:4px;padding:3px;filter:grayscale(1);opacity:.85}
 .ft-c{border-top:1px solid rgba(255,255,255,.08);text-align:center;color:#8a8ab0;font-size:13px;padding:16px}
-/* accordions */.acc{display:grid;gap:20px}
-.acc details{background:#fff;border-radius:5px;box-shadow:0 10px 30px rgba(0,0,0,.05)}
-.acc summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px 16px 30px;cursor:pointer;border-radius:5px;font-size:18px;line-height:28px;font-weight:700;color:var(--navy);letter-spacing:-.7px}
-.acc summary::-webkit-details-marker{display:none}
-.pm{position:relative;width:14px;height:14px;flex:none}
-.pm::before,.pm::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor}
-.pm::after{transform:rotate(90deg)}
-.acc details[open] summary{background:var(--blue);color:#fff}
-.acc details[open] .pm::after{display:none}
 .cv{display:inline-block;width:7px;height:7px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg);margin:-4px 3px 0;flex:none}
 .cv.r{transform:rotate(-45deg);margin:0 3px}
 /* forms */.qi,.fi{width:100%;min-height:46px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;background:#fff;color:#111;font:400 14px/28px Manrope,system-ui,sans-serif}
@@ -125,10 +116,6 @@ textarea.qi,textarea.fi{min-height:110px;resize:vertical}
 .hh .mark{margin-bottom:4px}
 .hh:not(.ctr) .mark{margin-left:0}
 .card{background:#fff;border-radius:5px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
-.tabs [role=tablist]{display:flex;gap:30px;border-bottom:1px solid var(--bd);margin-bottom:24px;flex-wrap:wrap}
-.tabs [role=tab]{font-weight:800;color:var(--navy);font-size:15px;padding:10px 0;border-bottom:2px solid transparent;margin-bottom:-1px}
-.tabs [role=tab][aria-selected=true]{border-color:var(--blue)}
-.tabs [role=tabpanel][hidden]{display:none}
 .mapw iframe{display:block;width:100%;height:300px;border:0;border-radius:5px}
 .cf{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .cf .full{grid-column:1/-1}
