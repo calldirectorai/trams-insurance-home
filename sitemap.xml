@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tramsinsurance.com/glossary-of-insurance-terms/</loc>
+    <lastmod>2026-10-27T18:50:29.517Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://tramsinsurance.com/faqs/</loc>
     <lastmod>2026-10-27T18:50:22.984Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -93,11 +98,6 @@
   <url>
     <loc>https://tramsinsurance.com/service/auto/</loc>
     <lastmod>2026-10-27T16:00:14.265Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://tramsinsurance.com/glossary-of-insurance-terms/</loc>
-    <lastmod>2026-10-27T16:00:13.402Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
