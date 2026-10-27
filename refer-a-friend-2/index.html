@@ -421,10 +421,12 @@ function st(f,ok,m){var s=f.querySelector('.fs');if(!s)return;s.className='fs fu
 d.addEventListener('submit',function(ev){var f=ev.target;if(!f.matches||!f.matches('form[data-intake]'))return;ev.preventDefault();
 if(!f.checkValidity()){f.reportValidity();return}
 var fd=new FormData(f),L=[],skip={_gotcha:1,consent:1};
+var ph=pick(fd,['Phone']),pe=e164(ph);
+if(ph&&!/^\+1\d{10}$/.test(pe)){st(f,false,'Please enter a valid 10-digit US phone number, or leave it blank.');var pi=f.querySelector('[name=Phone]');if(pi)pi.focus();return}
 fd.forEach(function(v,k){if(skip[k]||typeof v!=='string'||!v.trim())return;L.push(k+': '+v.trim())});
 var bot=!!pick(fd,['_gotcha'])||navigator.webdriver===true||!human||(Date.now()-T0)<3000;
-var p={contactName:pick(fd,['Full Name']),contactEmail:pick(fd,['Email']),contactPhone:e164(pick(fd,['Phone'])),
-data:{formType:f.getAttribute('data-intake')||'Referral',page:location.href.split('#')[0],summary:L.join('\n'),spam:bot?'yes':'no'}};
+var p={contactName:pick(fd,['Full Name']),contactEmail:pick(fd,['Email']),contactPhone:pe,
+data:{formType:'Referral',page:location.href.split('#')[0],summary:L.join('\n'),spam:bot?'yes':'no'}};
 var b=f.querySelector('[type=submit]');if(b)b.disabled=true;
 fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).then(function(r){if(!r.ok)throw 0;
 f.reset();st(f,true,f.getAttribute('data-ok'))})
