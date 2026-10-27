@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tramsinsurance.com/service/umbrella/</loc>
+    <lastmod>2026-10-27T18:51:56.477Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://tramsinsurance.com/service/surety-bond/</loc>
     <lastmod>2026-10-27T18:51:48.759Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -93,11 +98,6 @@
   <url>
     <loc>https://tramsinsurance.com/service/workers-compensation/</loc>
     <lastmod>2026-10-27T16:00:19.458Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://tramsinsurance.com/service/umbrella/</loc>
-    <lastmod>2026-10-27T16:00:18.904Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
