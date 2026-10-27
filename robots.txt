@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://calldirectorai.github.io/trams-insurance-home/sitemap.xml
