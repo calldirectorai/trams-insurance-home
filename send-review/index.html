@@ -45,6 +45,7 @@ f.addEventListener('submit',function(ev){ev.preventDefault();
  if(!pin)return say('Enter the staff PIN.');
  if(!document.getElementById('ok').checked)return say('Confirm the client is okay with a text.');
  if(navigator.webdriver)return say('Could not send. Please try again.');
+ if(document.getElementById('hp').value){f.reset();return say('Sent. Thank you!',true);}
  b.disabled=true;say('Sending…',true);
  fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contactName:fn,contactPhone:ph,contactEmail:em||undefined,channel:'sms',data:{firstName:fn,pin:pin,hp:document.getElementById('hp').value}})})
  .then(function(r){if(!r.ok)throw 0;say('Sent to '+fn+'. Thank you!',true);f.reset();})
