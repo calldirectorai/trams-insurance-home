@@ -1,4 +1,5 @@
 (function(){"use strict";
+function send(body){var o={method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body),keepalive:true};return fetch(WEBHOOK,o).then(function(r){if(!r.ok)throw 0}).catch(function(){setTimeout(function(){fetch(WEBHOOK,o).catch(function(){})},2000)})}
 var WEBHOOK=["https://app.calldirector.ai","api/webhooks/flow/8528","786b937539fd9b132044c6da5fa944e0f6224555f1d440efb5eacea656c5caa8"].join("/");
 var T0=Date.now(),human=false;
 ["pointerdown","touchstart","keydown"].forEach(function(ev){addEventListener(ev,function(e){if(e.isTrusted)human=true},{capture:true,passive:true})});
@@ -141,10 +142,8 @@ function build(){
   var summary=lines.map(function(k){return k+": "+seen[k].join(", ")}).join("\n");
   var spam=!!String(fd.get("_gotcha")||"")||navigator.webdriver===true||!human||Date.now()-T0<3000;
   var ph=String(fd.get("Phone")||"").replace(/\D/g,"");ph=ph.length===10?"+1"+ph:(ph.length===11&&ph[0]==="1"?"+"+ph:fd.get("Phone"));
-  var btn=fm.querySelector("[type=submit]:not([hidden])")||fm.querySelector('[data-st="'+st+'"] [type=submit]');btn.disabled=true;btn.textContent="Sending…";
-  fetch(WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contactName:fd.get("Full Name"),contactEmail:fd.get("Email"),contactPhone:ph,data:{formType:FORMS[cur].t+" Quote",page:location.href.split("#")[0],summary:summary,language:fd.get("Preferred language")||"English",spam:spam?"yes":"no"}})})
-  .then(function(r){if(!r.ok)throw 0;host.innerHTML='<div class="qthanks on" style="display:block">✅ Got it! A licensed agent is on it and will reach out shortly.</div>';setTimeout(resetAll,3500)})
-  .catch(function(){btn.disabled=false;btn.textContent="Get my quote";err('Sorry, that didn\'t go through. Please call <a href="tel:+12408429293">(240) 842-9293</a>.')})});
+  send({contactName:fd.get("Full Name"),contactEmail:fd.get("Email"),contactPhone:ph,data:{formType:FORMS[cur].t+" Quote",page:location.href.split("#")[0],summary:summary,language:fd.get("Preferred language")||"English",spam:spam?"yes":"no"}});
+  host.innerHTML='<div class="qthanks on" style="display:block">✅ Got it! A licensed agent is on it and will reach out shortly.</div>';setTimeout(resetAll,3500)});
 }
 function resetAll(){formOpen=false;built=false;preLine="";host.innerHTML=START;wire();thanks.classList.add("on");clearTimeout(tmr);tmr=setTimeout(function(){thanks.classList.remove("on")},12000)}
 function open(){
@@ -168,9 +167,6 @@ document.querySelectorAll("form[data-simple]").forEach(function(f){var box=f.par
   var fd=new FormData(f),lines=[];fd.forEach(function(v,k){if(k!=="_gotcha"&&typeof v==="string"&&v.trim())lines.push(k+": "+v.trim())});
   var spam=!!String(fd.get("_gotcha")||"")||navigator.webdriver===true||!human||Date.now()-T0<3000;
   var ph=String(fd.get("Phone")||"").replace(/\D/g,"");ph=ph.length===10?"+1"+ph:(ph.length===11&&ph[0]==="1"?"+"+ph:fd.get("Phone"));
-  var b=f.querySelector("[type=submit]"),bt=b.textContent;b.disabled=true;b.textContent="Sending…";
-  fetch(WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contactName:fd.get("Full Name"),contactEmail:fd.get("Email"),contactPhone:ph,data:{formType:f.getAttribute("data-simple"),page:location.href.split("#")[0],summary:lines.join("\n"),spam:spam?"yes":"no"}})})
-  .then(function(r){if(!r.ok)throw 0;f.reset();st.className="qthanks on";st.textContent=f.getAttribute("data-ok");setTimeout(function(){st.className="qmsg";st.textContent=""},12000)})
-  .catch(function(){st.className="qmsg err";st.innerHTML='Sorry, that didn\'t go through. Please call <a href="tel:+12408429293">(240) 842-9293</a>.'})
-  .then(function(){b.disabled=false;b.textContent=bt})})});
+  send({contactName:fd.get("Full Name"),contactEmail:fd.get("Email"),contactPhone:ph,data:{formType:f.getAttribute("data-simple"),page:location.href.split("#")[0],summary:lines.join("\n"),spam:spam?"yes":"no"}});
+  f.reset();T0=Date.now();st.className="qthanks on";st.textContent=f.getAttribute("data-ok");setTimeout(function(){st.className="qmsg";st.textContent=""},12000)})});
 })();
