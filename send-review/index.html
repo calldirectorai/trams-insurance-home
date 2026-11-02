@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Send a Review Request | Tram's Insurance</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="https://tramsinsurance.com/assets/img/favicon.png">
+<style>
+:root{--ink:#0b1035;--mint:#28b79a;--line:#e3e5ef;--paper:#f6f5f1;--text:#2a2f45;--err:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.w{max-width:480px;margin:0 auto;padding:28px 16px 40px}
+.c{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(11,16,53,.06)}
+h1{font-size:24px;line-height:1.2;color:var(--ink);margin:0 0 6px}p.l{margin:0 0 18px;color:#5b6077;font-size:15px}
+label{display:block;font-weight:700;font-size:14px;color:var(--ink);margin:14px 0 6px}
+input{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff}input:focus{outline:none;border-color:var(--mint)}
+.ck{display:flex;gap:10px;align-items:flex-start;font-weight:500;font-size:14px;margin-top:16px}.ck input{width:20px;height:20px;margin-top:2px;flex:none}
+button{width:100%;margin-top:18px;padding:14px;border:0;border-radius:999px;background:var(--mint);color:#fff;font:800 16px/1 system-ui,Arial,sans-serif;cursor:pointer}button:disabled{opacity:.6}
+.m{margin-top:14px;font-weight:700;min-height:1.6em}.m.ok{color:#1c8f78}.m.er{color:var(--err)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.f{font-size:13px;color:#6b7088;margin-top:16px}
+</style></head><body><div class="w"><div class="c">
+<h1>Send a Google review request</h1>
+<p class="l">For Tram's Insurance staff. The client gets a text (and an email if you add one) with the review link, plus one reminder 4 days later.</p>
+<form id="rf" novalidate>
+<label for="fn">Client first name</label><input id="fn" name="fn" autocomplete="off" required maxlength="40">
+<label for="ph">Client mobile number</label><input id="ph" name="ph" type="tel" inputmode="tel" autocomplete="off" required placeholder="(240) 555-0123">
+<label for="em">Client email (optional)</label><input id="em" name="em" type="email" autocomplete="off">
+<label for="pin">Staff PIN</label><input id="pin" name="pin" type="password" inputmode="numeric" autocomplete="off" required maxlength="10">
+<div class="hp" aria-hidden="true"><label>Leave empty<input id="hp" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+<label class="ck"><input type="checkbox" id="ok" required><span>This person is a Tram's client and is okay with getting a text from us.</span></label>
+<button type="submit" id="sb">Send review request</button>
+<div class="m" id="msg" role="status"></div>
+</form>
+<p class="f">Tip: send it the day a policy starts, while the experience is fresh.</p>
+</div></div>
+<script>
+(function(){
+var W="https://app.calldirector.ai/api/webhooks/flow/8810/8e82f96266083a96d3303344dc4f9ea169fba71df3932cf76d60a8806c4e84c1";
+var f=document.getElementById('rf'),m=document.getElementById('msg'),b=document.getElementById('sb');
+function say(t,ok){m.textContent=t;m.className='m '+(ok?'ok':'er');}
+function e164(v){var d=(v||'').replace(/\D/g,'');if(d.length===10)return '+1'+d;if(d.length===11&&d[0]==='1')return '+'+d;return null;}
+f.addEventListener('submit',function(ev){ev.preventDefault();
+ var fn=f.fn.value.trim(),ph=e164(f.ph.value),em=f.em.value.trim(),pin=f.pin.value.trim();
+ if(!fn)return say('Add the client\'s first name.');
+ if(!ph)return say('Enter a 10-digit US mobile number.');
+ if(em&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em))return say('Check the email address.');
+ if(!pin)return say('Enter the staff PIN.');
+ if(!document.getElementById('ok').checked)return say('Confirm the client is okay with a text.');
+ if(navigator.webdriver)return say('Could not send. Please try again.');
+ b.disabled=true;say('Sending…',true);
+ fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contactName:fn,contactPhone:ph,contactEmail:em||undefined,channel:'sms',data:{firstName:fn,pin:pin,hp:document.getElementById('hp').value}})})
+ .then(function(r){if(!r.ok)throw 0;say('Sent to '+fn+'. Thank you!',true);f.reset();})
+ .catch(function(){say('Could not send. Check your connection and try again.');})
+ .finally(function(){b.disabled=false;});
+});
+})();
+</script></body></html>

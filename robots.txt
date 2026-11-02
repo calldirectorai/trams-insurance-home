@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /send-review/
 
 Sitemap: https://tramsinsurance.com/sitemap.xml
