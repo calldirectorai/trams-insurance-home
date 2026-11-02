@@ -62,7 +62,7 @@ to{transform:none}}
 .mm details ul{list-style:none;padding:6px 0 10px 16px}
 .mm details a{display:block;line-height:34px}
 .mm-q{margin-top:20px;width:100%}
-/* footer */.ft{background:linear-gradient(rgba(13,13,63,.9),rgba(13,13,63,.9)),url(https://app.calldirector.ai/objects/quick-uploads/1951/9d2624d2b564343f.png) center bottom/100% auto no-repeat var(--navy);color:#fff;font-size:14px;line-height:26px}
+/* footer */.ft{background:linear-gradient(rgba(13,13,63,.9),rgba(13,13,63,.9)),url(https://tramsinsurance.com/assets/img/9d2624d2b564343f.webp) center bottom/100% auto no-repeat var(--navy);color:#fff;font-size:14px;line-height:26px}
 .ft-top{display:flex;justify-content:space-between;align-items:center;padding:44px 0 34px;gap:20px}
 .ft-mail{display:flex;align-items:center;gap:14px;font-size:18px}
 .ft-mail .ic{color:#5d63d6}
@@ -131,7 +131,7 @@ to{transform:none}}
 .ab{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
 .abc{position:relative;height:420px}
 .abc img{position:absolute;border-radius:5px;object-fit:cover}
-.abc .dots{position:absolute;inset:0;background:url(https://app.calldirector.ai/objects/quick-uploads/1951/83c7467327348f16.webp) center/contain no-repeat;opacity:.5}
+.abc .dots{position:absolute;inset:0;background:url(https://tramsinsurance.com/assets/img/83c7467327348f16.webp) center/contain no-repeat;opacity:.5}
 .abc .frm{position:absolute;left:90px;top:110px;width:370px;height:230px;border:3px solid var(--teal);border-radius:5px}
 .tg2{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start}
 .trust{display:flex;align-items:center;gap:16px;margin-top:10px}
@@ -153,7 +153,7 @@ to{transform:none}}
 .tc figcaption img{width:50px;height:50px;border-radius:50%;object-fit:cover}
 .tc b{display:block;color:var(--navy);line-height:22px}
 .tc small{text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:800}
-.bnr{position:relative;background:linear-gradient(rgba(46,59,166,.55),rgba(13,13,63,.7)),url(https://app.calldirector.ai/objects/quick-uploads/1951/ff479068f2a55d1f.jpg) center/cover;padding:90px 0 150px;overflow:hidden}
+.bnr{position:relative;background:linear-gradient(rgba(46,59,166,.55),rgba(13,13,63,.7)),url(https://tramsinsurance.com/assets/img/ff479068f2a55d1f.webp) center/cover;padding:90px 0 150px;overflow:hidden}
 .bnr h2{color:#fff;font-size:56px;line-height:62px;max-width:760px;letter-spacing:-2px}
 .bnr .sw{position:absolute;right:0;top:0;width:420px}
 .mt2{background:#fff;padding:0 0 30px}
