@@ -214,3 +214,5 @@ p{margin:0 0 1em}.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 .qthanks.on{display:block}
 @media (max-width:980px){.phero .wrap.ph2{grid-template-columns:1fr;gap:28px}.phbadge{left:12px}.intro,.two{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.gl{columns:1}}
 @media (max-width:640px){.cards,.formcard .grid{grid-template-columns:1fr}.phero .wrap.ph2{padding-top:30px;padding-bottom:36px}}
+
+.gpb{display:block;width:min(330px,82%);height:auto;margin:30px auto 0;border-radius:18px;box-shadow:0 18px 44px rgba(11,16,53,.16)}.gpb.gpb-s{width:min(230px,62%);margin:26px auto 4px;border-radius:14px}

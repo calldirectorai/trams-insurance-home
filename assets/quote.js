@@ -110,7 +110,7 @@ function sec(s,i,tot){var b='<div data-st="'+(i+1)+'" hidden><h4>Step '+(i+2)+' 
 function build(){
  built=true;formOpen=true;var vbx=document.getElementById("vb");if(vbx)vbx.classList.remove("on");
  host.innerHTML='<form class="qf on" novalidate><input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="bar"><i></i></div>'+
- '<div data-st="0"><h4>Step 1 · Coverage</h4><div class="qlines" role="radiogroup" aria-label="Coverage type">'+LINES.map(function(l){return'<label><input type="radio" name="Quote Type" value="'+esc(l)+'"'+(l===preLine?' checked':'')+'><span>'+esc(LBL[l]||l)+'</span></label>'}).join("")+'</div><div class="qnav"><span></span><button type="button" class="btn btn-ink" data-next>Next</button></div></div>'+
+ '<div data-st="0"><h4>Step 1 · Coverage</h4><div class="qlines" role="radiogroup" aria-label="Coverage type">'+LINES.map(function(l){return'<label><input type="radio" name="Quote Type" value="'+esc(l)+'"'+(l===preLine?' checked':'')+'><span>'+esc(LBL[l]||l)+'</span></label>'}).join("")+'</div><div class="qnav"><span></span><button type="button" class="btn btn-ink" data-next>Next</button></div><img class="gpb gpb-s" src="https://tramsinsurance.com/assets/img/geico-partner.webp" alt="Tram\u2019s Insurance Agency, proud partner of GEICO" width="720" height="720" decoding="async"></div>'+
  '<div data-secs></div><div class="qmsg" role="alert"></div></form>';
  var fm=host.querySelector("form"),st=0,tot=0,cur="",bar=fm.querySelector(".bar i"),msg=fm.querySelector(".qmsg"),secs=fm.querySelector("[data-secs]");
  function err(t){msg.className="qmsg err";msg.innerHTML=t}
