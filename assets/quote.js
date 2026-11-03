@@ -1,4 +1,5 @@
 (function(){"use strict";
+document.addEventListener("input",function(e){var t=e.target;if(t&&t.getAttribute&&t.getAttribute("data-vin")){var c=t.selectionStart;t.value=t.value.toUpperCase().replace(/[^A-Z0-9]/g,"");try{t.setSelectionRange(c,c)}catch(_){}}});
 function send(body){var o={method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body),keepalive:true};return fetch(WEBHOOK,o).then(function(r){if(!r.ok)throw 0}).catch(function(){setTimeout(function(){fetch(WEBHOOK,o).catch(function(){})},2000)})}
 var WEBHOOK=["https://app.calldirector.ai","api/webhooks/flow/8528","786b937539fd9b132044c6da5fa944e0f6224555f1d440efb5eacea656c5caa8"].join("/");
 var T0=Date.now(),human=false;
@@ -12,7 +13,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;
 var YN=["Yes","No"],ST="MD";
 var CONTACT=[{n:"Full Name",l:"Full name (first and last)",r:1,a:"name"},{n:"Phone",l:"Phone",k:"tel",r:1,a:"tel"},{n:"Email",l:"Email",k:"email",r:1,a:"email"},{n:"Preferred language",l:"Preferred language",k:"s",o:["English","Français"]}];
 var ADDR=function(p){return[{n:p+"Street Address",l:"Street address",r:1,w:1,a:"street-address"},{n:p+"City",l:"City",r:1},{n:p+"State",l:"State",r:1,v:ST},{n:p+"ZIP Code",l:"ZIP code",r:1,k:"zip"}]};
-var CURINS=[{n:"Currently insured",l:"Do you have this coverage now?",k:"s",o:YN,r:1},{n:"Current insurer",l:"Current insurance company",r:1,sh:["Currently insured","Yes"]},{n:"Policy expiration",l:"Current policy expires",k:"date",sh:["Currently insured","Yes"]}];
+var CURINS=[{n:"Currently insured",l:"Do you have coverage now?",k:"s",o:YN,r:1},{n:"Current insurer",l:"Current insurance company",r:1,sh:["Currently insured","Yes"]},{n:"Policy expiration",l:"Current policy expires",k:"date",sh:["Currently insured","Yes"]}];
 var CLOSE=[{n:"Preferred contact method",l:"Preferred contact method",k:"s",o:["Phone","Text","Email"],r:1},{n:"Best time to contact",l:"Best time to reach you",k:"s",o:["Morning","Afternoon","Evening","Any time"]},{n:"Additional notes",l:"Anything else we should know?",k:"ta",w:1,ph:"New purchase, teen driver, rideshare, special requirements…"}];
 var FORMS={
 "Auto":{t:"Auto Insurance",s:[
@@ -26,9 +27,9 @@ var FORMS={
   {n:"Industry",l:"Industry you work in",ph:"e.g. healthcare, construction"}])},
  {h:"Insurance history",f:CURINS.concat([
   {n:"Lapse in prior insurance",l:"Any lapse in coverage?",k:"s",o:["No lapse","1–29 days","No prior coverage"],r:1},
-  {n:"Household members 16+",l:"Household members age 16+",k:"s",o:["1","2","3","4","5","6 or more"],r:1},
+  {n:"Household members 16+",l:"Household members age 16+",k:"s",o:["0","1","2","3","4","5","6 or more"],r:1},
   {n:"Coverage needed by",l:"When do you need coverage?",k:"date",r:1}])},
- {h:"Vehicles",rep:{key:"Vehicle",max:4,f:[{n:"Year",l:"Year",k:"num",r:1},{n:"Make",l:"Make",r:1,ph:"e.g. Toyota"},{n:"Model",l:"Model",r:1,ph:"e.g. Camry"},{n:"VIN",l:"VIN (on your registration or insurance card)",r:1}]}},
+ {h:"Vehicles",rep:{key:"Vehicle",max:4,f:[{n:"VIN",l:"VIN, 17 letters and numbers (on your title, registration or insurance card)",k:"vin",r:1,w:1,ph:"e.g. 1HGCM82633A004352"},{n:"Year",l:"Year",k:"num",r:1},{n:"Make",l:"Make",r:1,ph:"e.g. Toyota"},{n:"Model",l:"Model",r:1,ph:"e.g. Camry"}]}},
  {h:"Drivers",rep:{key:"Driver",max:5,f:[{n:"Full Name",l:"First and last name",r:1},{n:"DOB",l:"Date of birth",k:"date",r:1},{n:"License #",l:"Driver license number (optional)"},{n:"License State",l:"License state",r:1,v:ST},{n:"Gender",l:"Gender",k:"s",o:["Male","Female"],r:1},{n:"Marital Status",l:"Marital status",k:"s",o:["Single","Married","Other"],r:1},{n:"Years Licensed",l:"Years licensed",k:"num",r:1},{n:"Relationship",l:"Relationship to you",k:"s",o:["Self","Spouse","Child","Parent","Relative","Other household member"],r:1,first:"Self"},{n:"Good Student (A/B)",l:"Good student, A or B average?",k:"s",o:YN},{n:"SR-22 Needed",l:"SR-22 needed?",k:"s",o:YN},{n:"Occupation",l:"Occupation (optional)"},{n:"Notes",l:"Notes (optional)",ph:"Tickets, DUI, etc."}]}},
  {h:"Driving record & coverage",f:[
   {n:"Tickets/accidents (5 yrs)",l:"Any tickets or accidents in the past 5 years?",k:"s",o:YN,r:1},
@@ -98,7 +99,7 @@ function fld(x,p){var n=esc(p+x.n),id="q_"+(p+x.n).replace(/\W+/g,"_"),req=x.r?"
  else if(k==="ta")h=lab+'<textarea id="'+id+'" name="'+n+'" rows="3"'+req+(x.ph?' placeholder="'+esc(x.ph)+'"':'')+'></textarea>';
  else if(k==="cg")h='<fieldset class="cgp"'+(x.r?' data-req="1"':'')+' data-n="'+n+'"><legend>'+esc(x.l)+(x.r?' *':'')+'</legend>'+x.o.map(function(o){return'<label class="cb"><input type="checkbox" name="'+n+'" value="'+esc(o)+'"> '+esc(o)+'</label>'}).join("")+'</fieldset>';
  else{var ty={tel:"tel",email:"email",num:"number",date:"date",url:"url",zip:"text"}[k]||"text";
-  h=lab+'<input id="'+id+'" name="'+n+'" type="'+ty+'"'+req+(x.v?' value="'+esc(x.v)+'"':'')+(x.ph?' placeholder="'+esc(x.ph)+'"':'')+(x.a?' autocomplete="'+x.a+'"':'')+(k==="zip"?' inputmode="numeric" pattern="[0-9]{5}"':'')+(k==="num"?' min="0" inputmode="numeric"':'')+(k==="tel"?' inputmode="tel"':'')+'>'}
+  h=lab+'<input id="'+id+'" name="'+n+'" type="'+ty+'"'+req+(x.v?' value="'+esc(x.v)+'"':'')+(x.ph?' placeholder="'+esc(x.ph)+'"':'')+(x.a?' autocomplete="'+x.a+'"':'')+(k==="zip"?' inputmode="numeric" pattern="[0-9]{5}"':'')+(k==="num"?' min="0" inputmode="numeric"':'')+(k==="tel"?' inputmode="tel"':'')+(k==="vin"?' maxlength="17" pattern="[A-HJ-NPR-Za-hj-npr-z0-9]{17}" title="A VIN is exactly 17 letters and numbers (no I, O or Q)." autocapitalize="characters" spellcheck="false" data-vin="1"':'')+'>'}
  return'<div class="'+cls+'"'+sh+'>'+h+'</div>'}
 function block(rep,i){return'<div class="qblock" data-i="'+i+'"><div class="qbh"><strong>'+rep.key+' '+i+'</strong>'+(i>1?'<button type="button" class="qbtn qrm">Remove</button>':'')+'</div><div class="grid">'+rep.f.map(function(x){return fld(x,rep.key+" "+i+" ")}).join("")+'</div></div>'}
 function sec(s,i,tot){var b='<div data-st="'+(i+1)+'" hidden><h4>Step '+(i+2)+' of '+(tot+1)+' · '+esc(s.h)+'</h4>';

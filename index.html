@@ -49,14 +49,15 @@ p{margin:0 0 1em}.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 /* hero */
 .hero{position:relative;color:#fff;background:var(--ink);overflow:hidden}
 .hero:before{content:"";position:absolute;inset:0;background:url(https://tramsinsurance.com/assets/img/1814858c3f6dd213.webp) center/cover;opacity:.75}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(11,16,53,.96) 22%,rgba(11,16,53,.72) 48%,rgba(11,16,53,.25) 78%,rgba(11,16,53,.1))}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(11,16,53,.84) 22%,rgba(11,16,53,.6) 48%,rgba(11,16,53,.2) 78%,rgba(11,16,53,.06))}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr .9fr;gap:40px;align-items:center;padding-top:64px;padding-bottom:64px}
 .hero h1{color:#fff;font-size:clamp(38px,5.2vw,64px);margin-bottom:18px}
 .hero h1 em{font-style:italic;color:var(--mint)}
 .hero p.sub{font-size:19px;color:#d9dcf2;max-width:560px}
 .hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 22px}
 .chips{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;font-weight:700;color:#dfe2f7}
-.chips span{display:inline-flex;align-items:center;gap:7px}.chips span:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.chips span{display:inline-flex;align-items:center;gap:7px}.partner{display:inline-flex;align-items:center;gap:12px;margin-top:22px;background:#fff;border-radius:14px;padding:8px 16px 8px 10px;box-shadow:0 10px 30px rgba(0,0,0,.18)}.partner img{width:84px;height:auto;display:block}.partner span{font-size:13px;font-weight:700;color:#0b1035;letter-spacing:.01em}
+.chips span:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint)}
 .hcard{background:#fff;color:var(--text);border-radius:20px;padding:26px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
 .hcard h3{font-size:22px;margin-bottom:6px}.hcard p{font-size:14.5px;color:var(--muted);margin-bottom:16px}
 .pick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -214,10 +215,11 @@ p{margin:0 0 1em}.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 <p class="sub">Auto, home, renters and business coverage from a Gaithersburg agency that shops the market for you, explains it in plain English or French, and picks up when you call.</p>
 <div class="ctas"><a class="btn btn-mint" href="#quote" data-q>Start my free quote</a><a class="btn btn-ghost" href="https://app.calldirector.ai/book/trams-insurance-review" target="_blank" rel="noopener">Book a free policy review</a></div>
 <div class="chips"><span>Free, no-obligation quotes</span><span>Answered day &amp; night</span><span>Nous parlons français</span></div>
+<div class="partner"><img src="https://tramsinsurance.com/assets/img/a59cc899a5a02af6.webp" alt="GEICO" width="128" height="94"><span>GEICO partner agency</span></div>
 </div>
 <div class="hcard">
 <h3>What do you need to cover?</h3>
-<p>Pick one to start your free quote. A licensed agent follows up with your options.</p>
+<p>Pick one to start your free quote. A licensed agent will follow up with your options.</p>
 <div class="pick">
 <button type="button" data-line="Auto"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11a2 2 0 0 1 2 2v4a1 1 0 0 1-1 1h-1v1a1 1 0 0 1-2 0v-1H7v1a1 1 0 0 1-2 0v-1H4a1 1 0 0 1-1-1v-4a2 2 0 0 1 2-2zm2.1 0h9.8l-1.2-3.7a.5.5 0 0 0-.5-.3H8.8a.5.5 0 0 0-.5.3zM6.5 15a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm11 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>Auto</button>
 <button type="button" data-line="Home / Condo / Renters"><svg viewBox="0 0 24 24"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg>Home &amp; Renters</button>
@@ -317,7 +319,7 @@ p{margin:0 0 1em}.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 <section class="sec tight" data-section="faq"><div class="wrap"><span class="kick">Questions</span><h2 class="h2">Good to know</h2><div class="faq">
 <details><summary>What does an independent agency mean for me?</summary><p>We're not tied to a single insurer. We compare coverage and price across many companies and recommend what fits you, then help you switch if a better option comes up at renewal.</p></details>
 <details><summary>Is the quote really free?</summary><p>Yes. Quotes and policy reviews are free and there's no obligation to buy.</p></details>
-<details><summary>What do I need for an auto quote?</summary><p>Your name, the vehicles (year, make, model) and the drivers in your household. If you have your current policy handy, it helps us compare apples to apples.</p></details>
+<details><summary>What do I need for an auto quote?</summary><p>Your name, the vehicle(s) (VIN, year, make and model) and the driver’s license number of each driver in your household who will drive the vehicle(s). If you have your current policy number handy, it helps us compare apples to apples.</p></details>
 <details><summary>I just had an accident. What should I do?</summary><p>Make sure everyone is safe and call 911 if anyone is hurt. Then call the claims number on your insurance card or app, which works 24/7, and let us know so we can help you through it.</p></details>
 <details><summary>Parlez-vous français ?</summary><p>Oui ! Notre équipe et notre assistante Vera parlent français. Appelez-nous ou commencez votre devis en ligne.</p></details>
 </div></div></section>
